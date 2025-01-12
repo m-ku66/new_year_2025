@@ -11,9 +11,10 @@ type Theme = {
 type Props = {
   theme: Theme;
   scale?: number;
+  delay?: number;
 };
 
-const FocalText = ({ theme, scale = 1 }: Props) => {
+const FocalText = ({ theme, scale = 1, delay = 3 }: Props) => {
   return (
     <div
       style={{ scale: scale }}
@@ -24,7 +25,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
       <TextSpreader
         lineOfText={pageText.en.main[1].toUpperCase()}
         fontSize={1.3}
-        delay={3}
+        delay={delay}
       />
       {/* 2025 text */}
       <motion.h1
@@ -35,7 +36,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
         transition={{
           duration: 1,
           ease: [0.87, 0, 0.13, 1],
-          delay: 3,
+          delay: delay,
         }}
         className="seoulEB select-none text-[12rem] leading-[12rem]"
       >
@@ -48,9 +49,9 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // End at right side
         }}
         transition={{
-          duration: 1,
+          duration: 2,
           ease: [0.87, 0, 0.13, 1],
-          delay: 3,
+          delay: delay,
         }}
         style={{ backgroundColor: theme.foregroundColor }}
         className="w-full h-[0.1rem]"
@@ -67,7 +68,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
             transition={{
               duration: 0.3,
               ease: "easeInOut",
-              delay: 3,
+              delay: delay + 0.5,
             }}
             className="seoulEB select-none text-[2rem]"
           >
@@ -83,7 +84,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
             transition={{
               duration: 0.3,
               ease: "easeInOut",
-              delay: 3.1,
+              delay: delay + 0.8,
             }}
             width="9"
             height="12"
@@ -104,7 +105,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
             transition={{
               duration: 0.3,
               ease: "easeInOut",
-              delay: 3.2,
+              delay: delay + 0.5,
             }}
             className="seoulEB select-none text-[2rem]"
           >
@@ -120,7 +121,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
           transition={{
             duration: 1,
             ease: [0.87, 0, 0.13, 1],
-            delay: 3,
+            delay: delay,
           }}
           style={{ backgroundColor: theme.foregroundColor }}
           className="h-[1.2rem] w-[0.1rem]"
@@ -134,7 +135,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
             transition={{
               duration: 0.3,
               ease: "easeInOut",
-              delay: 3.2,
+              delay: delay + 1,
             }}
             className="seoulEB select-none text-[0.7rem] leading-[0.8rem] whitespace-pre-line"
           >
@@ -146,7 +147,7 @@ const FocalText = ({ theme, scale = 1 }: Props) => {
         lineOfText={pageText.en.main[7].toUpperCase()}
         fontSize={0.7}
         characterSpacing={0.12}
-        delay={3.5}
+        delay={delay + 0.8}
       />
       {/*-----------------------------------------------------*/}
     </div>

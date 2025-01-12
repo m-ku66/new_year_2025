@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 type Theme = {
   backgroundColor: "#FFFFFF" | "#E90000" | "#003AE9" | "#E9E500";
@@ -9,9 +10,10 @@ type Theme = {
 type Props = {
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   width?: number;
+  delay?: number;
 };
 
-const ThemeSwitcher = ({ setTheme, width = 2 }: Props) => {
+const ThemeSwitcher = ({ setTheme, width = 2, delay = 3 }: Props) => {
   const [setselectedTheme, setSetselectedTheme] = useState("default");
 
   const changeTheme = (targetTheme: string) => {
@@ -38,7 +40,20 @@ const ThemeSwitcher = ({ setTheme, width = 2 }: Props) => {
         const selectedTheme = ["default", "red", "blue", "yellow"];
 
         return (
-          <div
+          <motion.div
+            animate={{
+              opacity: [0, 1],
+              y: [10, -10, 0],
+            }}
+            transition={{
+              duration: 0.1 + i * 0.1,
+              ease: "easeInOut",
+              delay: delay,
+            }}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1, ease: "easeInOut", delay: 0 },
+            }}
             key={i}
             onClick={() => {
               changeTheme(selectedTheme[i]);
@@ -52,8 +67,8 @@ const ThemeSwitcher = ({ setTheme, width = 2 }: Props) => {
               border:
                 selectedTheme[i] === setselectedTheme ? "1px solid" : "none",
             }}
-            className={`hover:scale-110 duration-150 cursor-pointer border border-1 border-transparent hover:border-black/[0.5]`}
-          ></div>
+            className={`hover:scale-110 duration-150 cursor-pointer`}
+          ></motion.div>
         );
       })}
     </div>
