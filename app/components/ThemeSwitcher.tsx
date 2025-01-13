@@ -11,26 +11,62 @@ type Props = {
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   width?: number;
   delay?: number;
+  setIsTransition: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ThemeSwitcher = ({ setTheme, width = 2, delay = 3 }: Props) => {
+const ThemeSwitcher = ({
+  setTheme,
+  width = 2,
+  delay = 3,
+  setIsTransition,
+}: Props) => {
   const [setselectedTheme, setSetselectedTheme] = useState("default");
+  const [clickable, setClickable] = useState(true);
 
   const changeTheme = (targetTheme: string) => {
+    setClickable(false);
     switch (targetTheme) {
       case "red":
-        setTheme({ backgroundColor: "#E90000", foregroundColor: "#FFFFFF" });
+        setIsTransition(true);
+        setTimeout(() => {
+          setTheme({ backgroundColor: "#E90000", foregroundColor: "#FFFFFF" });
+        }, 500);
+        setTimeout(() => {
+          setIsTransition(false);
+        }, 1200);
         break;
       case "blue":
-        setTheme({ backgroundColor: "#003AE9", foregroundColor: "#FFFFFF" });
+        setIsTransition(true);
+        setTimeout(() => {
+          setTheme({ backgroundColor: "#003AE9", foregroundColor: "#FFFFFF" });
+        }, 500);
+        setTimeout(() => {
+          setIsTransition(false);
+        }, 1200);
         break;
       case "yellow":
-        setTheme({ backgroundColor: "#E9E500", foregroundColor: "#000000" });
+        setIsTransition(true);
+        setTimeout(() => {
+          setTheme({ backgroundColor: "#E9E500", foregroundColor: "#000000" });
+        }, 500);
+        setTimeout(() => {
+          setIsTransition(false);
+        }, 1200);
         break;
       default:
-        setTheme({ backgroundColor: "#FFFFFF", foregroundColor: "#000000" });
+        setIsTransition(true);
+        setTimeout(() => {
+          setTheme({ backgroundColor: "#FFFFFF", foregroundColor: "#000000" });
+        }, 500);
+        setTimeout(() => {
+          setIsTransition(false);
+        }, 1200);
         break;
     }
+
+    setTimeout(() => {
+      setClickable(true);
+    }, 1000);
   };
 
   return (
@@ -56,8 +92,12 @@ const ThemeSwitcher = ({ setTheme, width = 2, delay = 3 }: Props) => {
             }}
             key={i}
             onClick={() => {
-              changeTheme(selectedTheme[i]);
-              setSetselectedTheme(selectedTheme[i]);
+              if (clickable) {
+                changeTheme(selectedTheme[i]);
+                setSetselectedTheme(selectedTheme[i]);
+              } else {
+                return;
+              }
             }}
             style={{
               width: `${width}rem`,
@@ -67,7 +107,7 @@ const ThemeSwitcher = ({ setTheme, width = 2, delay = 3 }: Props) => {
               border:
                 selectedTheme[i] === setselectedTheme ? "1px solid" : "none",
             }}
-            className={`hover:scale-110 duration-150 cursor-pointer`}
+            className={`cursor-pointer`}
           ></motion.div>
         );
       })}

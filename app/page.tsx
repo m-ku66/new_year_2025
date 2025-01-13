@@ -2,12 +2,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import ThemeSwitcher from "./components/ThemeSwitcher";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import openingAnim from "./lottie/opening-anim.json";
 import FocalText from "./components/FocalText";
 import CopyrightVector from "./components/CopyrightVector";
 import Description from "./components/Description";
 import Echo from "./components/Echo";
+import OpeningAnim from "./components/OpeningAnim";
+import TransitionAnim from "./components/TransitionAnim";
 
 type Theme = {
   backgroundColor: "#FFFFFF" | "#E90000" | "#003AE9" | "#E9E500";
@@ -19,7 +19,7 @@ export default function Home() {
     foregroundColor: "#000000",
   });
   const [showAnim, setShowAnim] = useState(true);
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [isTransition, setIsTransition] = useState(false);
 
   useEffect(() => {
     const animationTimeout = setTimeout(() => {
@@ -31,15 +31,7 @@ export default function Home() {
     };
   }, []);
 
-  const stopFrame = 10;
-  const handleAnimationComplete = () => {
-    if (lottieRef.current) {
-      // Stop at the desired frame
-      lottieRef.current.goToAndStop(stopFrame, true);
-    }
-  };
-
-  const ANIMATION_DELAY = 2.8;
+  const ANIMATION_DELAY = 2;
 
   return (
     <div
@@ -49,21 +41,8 @@ export default function Home() {
       }}
       className="hidden md:flex container max-w-full h-screen justify-center items-center relative px-8 py-8 overflow-hidden"
     >
-      {showAnim && (
-        <Lottie
-          animationData={openingAnim}
-          loop={false} // No looping, stop after one complete playthrough
-          lottieRef={lottieRef}
-          onComplete={handleAnimationComplete} // Call onComplete when animation finishes
-          style={{
-            position: "absolute",
-            zIndex: 10,
-            pointerEvents: "none",
-            width: "110%",
-            height: "110%",
-          }}
-        />
-      )}
+      {showAnim && <OpeningAnim />}
+      {isTransition && <TransitionAnim />}
 
       <div className="w-1/3 h-full bg-transparent flex flex-col place-items-start justify-between">
         <Echo theme={theme} delay={ANIMATION_DELAY + 1} />
@@ -90,9 +69,16 @@ export default function Home() {
           setTheme={setTheme}
           width={1.3}
           delay={ANIMATION_DELAY + 1.5}
+          setIsTransition={setIsTransition}
         />
         <CopyrightVector theme={theme} delay={ANIMATION_DELAY + 2} />
       </div>
     </div>
   );
 }
+
+/**
+ * TODO
+ * Recreate opening and transition anims using Framer Motion; get rid of Lottie approach
+ * Work on Japanese version; modify existing components for Japanese
+ */
