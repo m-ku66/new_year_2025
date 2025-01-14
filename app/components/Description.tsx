@@ -81,7 +81,7 @@ const Description = ({ delay = 3, languageSwitchDelay = 0.2 }: Props) => {
               ease: [0.87, 0, 0.13, 1],
               delay: getAnimationDelay(i),
             }}
-            className="flex flex-col"
+            className="flex flex-col gap-1"
           >
             {Object.values(sentences).map((character, j) => (
               <motion.p
@@ -92,7 +92,7 @@ const Description = ({ delay = 3, languageSwitchDelay = 0.2 }: Props) => {
                   ease: [0.87, 0, 0.13, 1],
                   delay: getAnimationDelay(i + j * 0.1),
                 }}
-                className="seoulEB text-[0.8rem] leading-[1rem]"
+                className="seoulEB text-[1rem] leading-[1rem]"
               >
                 {character}
               </motion.p>

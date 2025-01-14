@@ -139,7 +139,9 @@ const Echo = ({ theme, delay = 3, languageSwitchDelay = 0.2 }: Props) => {
         }}
         className="seoulEB text-[0.8rem] select-none"
       >
-        <MouseTracker />
+        <div className="md:flex hidden">
+          <MouseTracker />
+        </div>
       </motion.div>
     </div>
   );
