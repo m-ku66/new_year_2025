@@ -26,12 +26,14 @@ const ThemeSwitcher = memo(
     setIsTransition,
     theme = { backgroundColor: "#FFFFFF", foregroundColor: "#000000" },
   }: Props) => {
+    ThemeSwitcher.displayName = "ThemeSwitcher";
     const [selectedTheme, setSelectedTheme] = useState("default");
     const [clickable, setClickable] = useState(true);
     const [isInitialMount, setIsInitialMount] = useState(true);
     const [isThemeChanging, setIsThemeChanging] = useState(false);
     const language = useLanguageStore((state) => state.language);
     const [toggleMobileDropDwon, setToggleMobileDropDown] = useState(false);
+    console.log(themeSwitchDelay);
 
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -72,7 +74,6 @@ const ThemeSwitcher = memo(
 
     const colors = ["#000000", "#E90000", "#003AE9", "#E9E500"];
     const themes = ["default", "red", "blue", "yellow"];
-
     const ThemeButton = memo(({ index }: { index: number }) => (
       <>
         <AnimatePresence mode="wait">

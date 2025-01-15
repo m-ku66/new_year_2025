@@ -49,4 +49,7 @@ const RightSection = memo(
   )
 );
 
+RightSection.displayName = "RightSection";
+
+
 export default RightSection;

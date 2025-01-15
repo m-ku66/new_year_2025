@@ -22,7 +22,9 @@ const FocalText = memo(
     const [isInitialMount, setIsInitialMount] = useState(true);
     const [isAnimating, setIsAnimating] = useState(true);
     const language = useLanguageStore((state) => state.language);
+    console.log(isAnimating);
 
+    // Calculate total initial animation duration
     const totalAnimDuration = delay;
 
     useEffect(() => {

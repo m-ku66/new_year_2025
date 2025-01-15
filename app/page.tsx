@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import OpeningAnim from "./components/OpeningAnim";
 import TransitionAnim from "./components/TransitionAnim";

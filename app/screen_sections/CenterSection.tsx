@@ -94,4 +94,6 @@ const CenterSection = memo(
   )
 );
 
+CenterSection.displayName = "CenterSection";
+
 export default CenterSection;
