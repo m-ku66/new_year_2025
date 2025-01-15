@@ -69,7 +69,7 @@ const CenterSection = memo(
           )}
         </motion.div>
         <motion.div
-          className="absolute bottom-40 text-[1.2rem] seoulEB cursor-pointer select-none opacity-50"
+          className="absolute bottom-20 text-[1.2rem] seoulEB cursor-pointer select-none opacity-50"
           whileHover={{ scale: 1.1, opacity: 1 }}
           whileTap={{ scale: 0.95 }}
           style={{ scale: 1.1 }}

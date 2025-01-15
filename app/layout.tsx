@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "2025",
   description: "Welcome to 2025",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
