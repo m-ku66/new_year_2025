@@ -26,7 +26,6 @@ const ThemeSwitcher = memo(
     setIsTransition,
     theme = { backgroundColor: "#FFFFFF", foregroundColor: "#000000" },
   }: Props) => {
-    ThemeSwitcher.displayName = "ThemeSwitcher";
     const [selectedTheme, setSelectedTheme] = useState("default");
     const [clickable, setClickable] = useState(true);
     const [isInitialMount, setIsInitialMount] = useState(true);
