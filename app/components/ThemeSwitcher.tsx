@@ -142,6 +142,8 @@ const ThemeSwitcher = memo(
       </>
     ));
 
+    ThemeButton.displayName = "ThemeButton";
+
     return (
       <>
         <div
